@@ -1,2 +1,0 @@
-# White-peace-
-Hotel website 
