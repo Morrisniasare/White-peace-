@@ -1,4 +1,4 @@
-import React from "react"
+import React from 'react'
 import type { Metadata, Viewport } from 'next'
 import { Playfair_Display, Inter } from 'next/font/google'
 
@@ -8,12 +8,14 @@ const playfairDisplay = Playfair_Display({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
   variable: '--font-playfair',
+  display: 'swap',
 })
 
 const inter = Inter({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600'],
   variable: '--font-inter',
+  display: 'swap',
 })
 
 export const viewport: Viewport = {
