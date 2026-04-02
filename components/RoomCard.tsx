@@ -1,4 +1,4 @@
-import { Users, Square, Wind } from 'lucide-react'
+import { Users, Maximize, Wind, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 
 interface RoomCardProps {
@@ -30,36 +30,38 @@ export default function RoomCard({
   const imagePath = imageMap[slug] || '/images/room-standard.jpg'
 
   return (
-    <div className="group overflow-hidden rounded border border-border hover:shadow-lg transition-all duration-300">
+    <div className="group bg-card overflow-hidden hover:shadow-xl transition-all duration-500">
       {/* Image */}
-      <div className="relative h-48 md:h-64 bg-secondary overflow-hidden">
+      <div className="relative aspect-[4/3] overflow-hidden">
         <img
           src={imagePath || "/placeholder.svg"}
           alt={name}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-        <div className="absolute bottom-4 left-4 right-4 text-white">
-          <p className="text-sm font-medium opacity-90">{category}</p>
-          <h3 className="font-serif text-2xl font-semibold text-balance">{name}</h3>
+        <div className="absolute top-4 left-4">
+          <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-xs font-medium text-foreground tracking-wide uppercase">
+            {category}
+          </span>
         </div>
       </div>
 
       {/* Content */}
       <div className="p-6 space-y-4">
+        <h3 className="font-serif text-2xl font-semibold text-foreground">{name}</h3>
+        
         {/* Quick Info */}
-        <div className="flex gap-4 text-sm text-muted-foreground">
-          <div className="flex items-center gap-1">
-            <Users size={16} />
-            {occupancy} Guests
+        <div className="flex gap-6 text-sm text-muted-foreground">
+          <div className="flex items-center gap-2">
+            <Users size={16} className="text-accent" />
+            <span>{occupancy} Guests</span>
           </div>
-          <div className="flex items-center gap-1">
-            <Square size={16} />
-            {size}m²
+          <div className="flex items-center gap-2">
+            <Maximize size={16} className="text-accent" />
+            <span>{size}m&sup2;</span>
           </div>
-          <div className="flex items-center gap-1">
-            <Wind size={16} />
-            AC
+          <div className="flex items-center gap-2">
+            <Wind size={16} className="text-accent" />
+            <span>AC</span>
           </div>
         </div>
 
@@ -68,7 +70,7 @@ export default function RoomCard({
           {amenities.slice(0, 3).map((amenity) => (
             <span
               key={amenity}
-              className="px-3 py-1 bg-secondary text-xs font-medium text-foreground rounded"
+              className="px-3 py-1.5 bg-secondary text-xs font-medium text-foreground/80 rounded-sm"
             >
               {amenity}
             </span>
@@ -76,14 +78,13 @@ export default function RoomCard({
         </div>
 
         {/* CTA */}
-        <div className="pt-4 border-t border-border">
-          <Link
-            href={`/rooms/${slug}`}
-            className="block w-full px-4 py-2 bg-foreground text-background rounded text-sm font-semibold hover:bg-foreground/90 transition-colors text-center"
-          >
-            View Details
-          </Link>
-        </div>
+        <Link
+          href={`/rooms/${slug}`}
+          className="group/link inline-flex items-center gap-2 pt-2 text-sm font-medium text-accent hover:text-accent/80 transition-colors"
+        >
+          View Details
+          <ArrowRight size={14} className="group-hover/link:translate-x-1 transition-transform" />
+        </Link>
       </div>
     </div>
   )

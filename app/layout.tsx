@@ -1,10 +1,10 @@
 import React from "react"
 import type { Metadata, Viewport } from 'next'
-import { Playfair_Display, Inter } from 'next/font/google'
+import { Cormorant_Garamond, Inter } from 'next/font/google'
 
 import './globals.css'
 
-const playfairDisplay = Playfair_Display({
+const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
   variable: '--font-playfair',
@@ -19,20 +19,20 @@ const inter = Inter({
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#faf8f3',
+  themeColor: '#f5f2ed',
   userScalable: true,
 }
 
 export const metadata: Metadata = {
-  title: 'White Peace Hotel | Luxury 4-Star Hotel in Accra',
+  title: 'White Peace Lodge & Event Garden | Serene Hospitality in Baatsona',
   description:
-    'Experience luxury, serenity, and convenience at White Peace Hotel. A 4-star hotel in the heart of Accra offering fine dining, spa, conference facilities, and exceptional hospitality.',
+    'Experience comfort, warmth, and exceptional hospitality at White Peace Lodge & Event Garden. A welcoming haven in Baatsona offering cozy accommodations and beautiful event spaces for weddings, celebrations, and gatherings.',
   generator: 'v0.app',
-  metadataBase: new URL('https://whitepeacehotel.com'),
+  metadataBase: new URL('https://whitepeacelodge.com'),
   openGraph: {
-    title: 'White Peace Hotel | Luxury 4-Star Hotel in Accra',
+    title: 'White Peace Lodge & Event Garden | Serene Hospitality in Baatsona',
     description:
-      'Experience luxury, serenity, and convenience at White Peace Hotel.',
+      'Experience comfort, warmth, and exceptional hospitality at White Peace Lodge & Event Garden.',
     type: 'website',
   },
 }
@@ -43,7 +43,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${playfairDisplay.variable} ${inter.variable}`}>
+    <html lang="en" className={`${cormorant.variable} ${inter.variable}`}>
       <body className="font-sans antialiased bg-background text-foreground">
         {children}
       </body>

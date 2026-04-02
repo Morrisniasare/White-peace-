@@ -1,67 +1,40 @@
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
-import { ChevronRight, Users, BarChart3, Heart, Briefcase } from 'lucide-react'
+import Link from 'next/link'
+import { Users, Heart, Briefcase, PartyPopper, ArrowRight, Check } from 'lucide-react'
 
-const eventSpaces = [
+const eventTypes = [
   {
-    name: 'Grand Ballroom',
-    capacity: '300 guests',
-    size: '500m²',
-    icon: Users,
-    description:
-      'Our most spacious venue, perfect for gala dinners, conferences, and large celebrations.',
-    features: [
-      'Flexible layouts',
-      'Built-in sound system',
-      'Dance floor',
-      'Catering kitchen access',
-    ],
-  },
-  {
-    name: 'Executive Conference',
-    capacity: '150 guests',
-    size: '250m²',
-    icon: Briefcase,
-    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/aaff36c0-ec4e-45a0-98ec-0438b1435344-gOkXkR2NEJUbVUqkIQybpCIbDu8CnM.jpeg',
-    description:
-      'State-of-the-art meeting room ideal for corporate conferences and seminars.',
-    features: [
-      'Advanced AV equipment',
-      'WiFi & connectivity',
-      'Breakout rooms',
-      'Tech support included',
-    ],
-  },
-  {
-    name: 'Intimate Garden',
-    capacity: '100 guests',
-    size: '150m²',
     icon: Heart,
-    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ac00ae07-35c0-4b0d-93f4-e1408a239404-0j4yhqbmBvMFe7Z5oJBtGh2Nc4u1it.jpeg',
-    description:
-      'An enchanting outdoor space perfect for intimate ceremonies and garden parties.',
-    features: [
-      'Natural ambiance',
-      'Weather protection',
-      'Elegant seating',
-      'Lighting options',
-    ],
+    title: 'Weddings & Receptions',
+    description: 'Celebrate your special day in our beautiful gardens with elegant setups and professional coordination.',
   },
   {
-    name: 'Business Suites',
-    capacity: 'Up to 50 guests',
-    size: 'Various sizes',
-    icon: BarChart3,
-    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/aaff36c0-ec4e-45a0-98ec-0438b1435344-gOkXkR2NEJUbVUqkIQybpCIbDu8CnM.jpeg',
-    description:
-      'Multiple breakout rooms perfect for smaller meetings, workshops, and private functions.',
-    features: [
-      'Privacy & exclusivity',
-      'Modern furnishings',
-      'Meeting technology',
-      'Flexible configurations',
-    ],
+    icon: PartyPopper,
+    title: 'Birthday Parties',
+    description: 'From intimate gatherings to grand celebrations, create unforgettable birthday memories.',
   },
+  {
+    icon: Briefcase,
+    title: 'Corporate Events',
+    description: 'Team retreats, meetings, and workshops in a serene environment away from the office.',
+  },
+  {
+    icon: Users,
+    title: 'Social Gatherings',
+    description: 'Family reunions, church programs, and community events in spacious outdoor settings.',
+  },
+]
+
+const services = [
+  'Venue setup and arrangement',
+  'Flexible seating configurations',
+  'Basic sound system',
+  'Lighting options',
+  'On-site coordination',
+  'Parking for guests',
+  'Security services',
+  'Accommodation for guests',
 ]
 
 export default function EventsPage() {
@@ -70,107 +43,61 @@ export default function EventsPage() {
       <Navigation />
 
       {/* Hero */}
-      <section className="pt-32 pb-16 md:pb-24 bg-card">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="space-y-4">
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <a href="/" className="hover:text-foreground transition-colors">
-                Home
-              </a>
-              <ChevronRight size={16} />
-              <span className="text-foreground">Events</span>
-            </div>
-            <h1 className="font-serif text-4xl md:text-5xl font-bold text-foreground">
-              Meetings & Events
-            </h1>
-            <p className="text-lg text-foreground/80 max-w-2xl">
-              Host your most important gatherings in our elegant event spaces.
-              From corporate meetings to intimate celebrations, we make every
-              occasion unforgettable.
-            </p>
-          </div>
+      <section className="relative pt-32 pb-20 md:pb-32">
+        <div className="absolute inset-0 -z-10">
+          <img
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/aaff36c0-ec4e-45a0-98ec-0438b1435344-pYmsNIVJRQP77OsOTZkBX4jnybGo0t.jpeg"
+            alt="Event garden"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/60" />
+        </div>
+
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="text-sm uppercase tracking-[0.3em] text-white/80 font-medium mb-4">
+            Event Spaces
+          </p>
+          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold text-white mb-6 text-balance">
+            Event Gardens
+          </h1>
+          <p className="text-lg text-white/80 max-w-2xl mx-auto">
+            Beautiful outdoor spaces for your most cherished celebrations. 
+            From weddings to corporate gatherings, we bring your vision to life.
+          </p>
         </div>
       </section>
 
-      {/* Event Spaces */}
-      <section className="py-16 md:py-24">
+      {/* Event Types */}
+      <section className="py-20 md:py-32">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="space-y-12">
-            {eventSpaces.map((space, index) => {
-              const Icon = space.icon
+          <div className="text-center mb-16">
+            <p className="text-sm uppercase tracking-[0.2em] text-accent font-medium mb-4">
+              What We Host
+            </p>
+            <h2 className="font-serif text-3xl md:text-4xl font-semibold text-foreground">
+              Events for Every Occasion
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {eventTypes.map((event, index) => {
+              const Icon = event.icon
               return (
-                <div
-                  key={index}
-                  className="border-b border-border last:border-0 pb-12 last:pb-0"
+                <div 
+                  key={index} 
+                  className="group p-8 bg-card border border-border hover:border-accent/30 transition-all duration-300 hover:shadow-lg"
                 >
-                  <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-                    {/* Info */}
-                    <div className="lg:col-span-3 space-y-4">
-                      <div className="flex items-center gap-3">
-                        <div className="p-2 bg-secondary rounded">
-                          <Icon size={28} className="text-accent" />
-                        </div>
-                        <h2 className="font-serif text-3xl font-bold text-foreground">
-                          {space.name}
-                        </h2>
-                      </div>
-
-                      <p className="text-lg text-foreground/80 leading-relaxed">
-                        {space.description}
-                      </p>
-
-                      <div className="grid grid-cols-2 gap-4">
-                        <div className="bg-secondary p-4 rounded">
-                          <p className="text-sm text-muted-foreground mb-1">
-                            Capacity
-                          </p>
-                          <p className="font-semibold text-foreground">
-                            {space.capacity}
-                          </p>
-                        </div>
-                        <div className="bg-secondary p-4 rounded">
-                          <p className="text-sm text-muted-foreground mb-1">
-                            Size
-                          </p>
-                          <p className="font-semibold text-foreground">
-                            {space.size}
-                          </p>
-                        </div>
-                      </div>
-
-                      <div>
-                        <p className="text-sm font-semibold text-foreground mb-2 uppercase tracking-wide">
-                          Key Features
-                        </p>
-                        <ul className="grid grid-cols-2 gap-2">
-                          {space.features.map((feature, i) => (
-                            <li
-                              key={i}
-                              className="flex items-center gap-2 text-sm"
-                            >
-                              <div className="w-1.5 h-1.5 bg-accent rounded-full" />
-                              <span className="text-foreground">{feature}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
+                  <div className="flex items-start gap-6">
+                    <div className="w-14 h-14 flex items-center justify-center bg-accent/10 group-hover:bg-accent/20 transition-colors flex-shrink-0">
+                      <Icon size={28} className="text-accent" />
                     </div>
-
-                    {/* Image */}
-                    <div className="h-64 lg:h-auto bg-secondary rounded border border-border overflow-hidden">
-                      {space.image ? (
-                        <img
-                          src={space.image}
-                          alt={space.name}
-                          className="w-full h-full object-cover"
-                        />
-                      ) : (
-                        <div className="flex items-center justify-center h-full">
-                          <span className="text-muted-foreground text-center px-4">
-                            {space.name} Image
-                          </span>
-                        </div>
-                      )}
+                    <div>
+                      <h3 className="font-serif text-xl font-semibold text-foreground mb-2">
+                        {event.title}
+                      </h3>
+                      <p className="text-muted-foreground leading-relaxed">
+                        {event.description}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -180,319 +107,222 @@ export default function EventsPage() {
         </div>
       </section>
 
-      {/* Event Types */}
-      <section className="py-16 md:py-24 bg-card">
+      {/* Garden Feature */}
+      <section className="py-20 md:py-32 bg-secondary/50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Types of Events We Host
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              From corporate to personal, we have the expertise and facilities
-              for all occasions
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              {
-                type: 'Corporate Meetings',
-                description: 'Board meetings, executive sessions, and business conferences',
-                icon: '💼',
-              },
-              {
-                type: 'Conferences & Seminars',
-                description: 'Multi-day events with breakout sessions and networking',
-                icon: '📊',
-              },
-              {
-                type: 'Product Launches',
-                description: 'Showcase your innovations in style and elegance',
-                icon: '🚀',
-              },
-              {
-                type: 'Weddings',
-                description: 'Elegant ceremonies and reception dinners',
-                icon: '💍',
-              },
-              {
-                type: 'Gala Dinners',
-                description: 'Black-tie events and formal celebrations',
-                icon: '🎭',
-              },
-              {
-                type: 'Intimate Celebrations',
-                description: 'Birthdays, anniversaries, and personal milestones',
-                icon: '🎉',
-              },
-            ].map((event, i) => (
-              <div key={i} className="bg-background p-6 rounded border border-border">
-                <div className="text-3xl mb-3">{event.icon}</div>
-                <h3 className="font-semibold text-foreground mb-2">
-                  {event.type}
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  {event.description}
-                </p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="order-2 lg:order-1">
+              <div className="aspect-[4/3] overflow-hidden">
+                <img
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/aaff36c0-ec4e-45a0-98ec-0438b1435344-pYmsNIVJRQP77OsOTZkBX4jnybGo0t.jpeg"
+                  alt="Event garden space"
+                  className="w-full h-full object-cover"
+                />
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Services & Support */}
-      <section className="py-16 md:py-24">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Event Services & Support
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Our dedicated team handles every detail to ensure your event is
-              executed flawlessly
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {[
-              {
-                category: 'Planning & Coordination',
-                services: [
-                  'Event planning consultation',
-                  'Venue selection & setup',
-                  'Timeline management',
-                  'Vendor coordination',
-                ],
-              },
-              {
-                category: 'Catering & Beverages',
-                services: [
-                  'Customized menus',
-                  'Bar service',
-                  'Wine pairings',
-                  'Dietary accommodations',
-                ],
-              },
-              {
-                category: 'Technical & AV',
-                services: [
-                  'Sound systems',
-                  'Projection & screens',
-                  'Lighting design',
-                  'WiFi & connectivity',
-                ],
-              },
-              {
-                category: 'Décor & Design',
-                services: [
-                  'Floral arrangements',
-                  'Table décor',
-                  'Ambient lighting',
-                  'Custom backdrops',
-                ],
-              },
-              {
-                category: 'Accommodations',
-                services: [
-                  'Room discounts',
-                  'Group rates',
-                  'Welcome packages',
-                  'Extended checkout',
-                ],
-              },
-              {
-                category: 'Guest Experience',
-                services: [
-                  'Concierge service',
-                  'Valet parking',
-                  'Transportation',
-                  'Photography options',
-                ],
-              },
-            ].map((service, i) => (
-              <div key={i} className="bg-card border border-border rounded p-6">
-                <h3 className="font-semibold text-foreground mb-4">
-                  {service.category}
-                </h3>
-                <ul className="space-y-2">
-                  {service.services.map((svc, j) => (
-                    <li
-                      key={j}
-                      className="flex items-center gap-2 text-sm text-foreground"
-                    >
-                      <div className="w-1.5 h-1.5 bg-accent rounded-full" />
-                      {svc}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Package Pricing */}
-      <section className="py-16 md:py-24 bg-card">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Event Packages
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              Flexible packages designed to meet various event needs and budgets
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              {
-                name: 'Essential',
-                features: [
-                  'Venue rental',
-                  'Basic setup',
-                  'Staff support',
-                  'Standard audio/visual',
-                ],
-              },
-              {
-                name: 'Premium',
-                features: [
-                  'Venue rental',
-                  'Professional setup',
-                  'Catering service',
-                  'Advanced AV & lighting',
-                ],
-                highlighted: true,
-              },
-              {
-                name: 'Luxury',
-                features: [
-                  'Multiple venues',
-                  'Full event planning',
-                  'Premium catering',
-                  'Complete AV & design',
-                ],
-              },
-            ].map((pkg, i) => (
-              <div
-                key={i}
-                className={`rounded-lg p-8 space-y-6 ${
-                  pkg.highlighted
-                    ? 'bg-accent text-white ring-2 ring-accent'
-                    : 'bg-background border border-border'
-                }`}
-              >
-                <div>
-                  <h3 className={`font-serif text-2xl font-bold mb-2 ${
-                    pkg.highlighted ? 'text-white' : 'text-foreground'
-                  }`}>
-                    {pkg.name}
-                  </h3>
-                </div>
-
-                <ul className="space-y-3">
-                  {pkg.features.map((feature, j) => (
-                    <li
-                      key={j}
-                      className={`flex items-center gap-2 ${
-                        pkg.highlighted ? 'text-white' : 'text-foreground'
-                      }`}
-                    >
-                      <div className={`w-1.5 h-1.5 rounded-full ${
-                        pkg.highlighted ? 'bg-white' : 'bg-accent'
-                      }`} />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-
-                <a
-                  href="/contact"
-                  className={`block w-full px-6 py-3 rounded font-semibold transition-colors text-center ${
-                    pkg.highlighted
-                      ? 'bg-white text-accent hover:bg-background'
-                      : 'border-2 border-foreground text-foreground hover:bg-foreground hover:text-background'
-                  }`}
-                >
-                  Inquire Now
-                </a>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Form Preview */}
-      <section className="py-16 md:py-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-card border border-border rounded-lg p-8 md:p-12 space-y-6">
-            <div className="text-center">
-              <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-2">
-                Plan Your Event
-              </h2>
-              <p className="text-lg text-foreground/80">
-                Contact our events team to discuss your requirements and receive
-                a customized proposal
-              </p>
             </div>
 
-            <form className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input
-                  type="text"
-                  placeholder="Full Name"
-                  className="px-4 py-3 bg-background border border-border rounded focus:outline-none focus:ring-2 focus:ring-accent"
-                />
-                <input
-                  type="email"
-                  placeholder="Email Address"
-                  className="px-4 py-3 bg-background border border-border rounded focus:outline-none focus:ring-2 focus:ring-accent"
-                />
+            <div className="order-1 lg:order-2">
+              <p className="text-sm uppercase tracking-[0.2em] text-accent font-medium mb-4">
+                Our Venue
+              </p>
+              <h2 className="font-serif text-3xl md:text-4xl font-semibold text-foreground mb-6">
+                Spacious Garden Setting
+              </h2>
+              <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+                Our event gardens offer a serene and flexible outdoor space perfect for 
+                celebrations of all sizes. Surrounded by greenery and designed for comfort, 
+                it provides the ideal backdrop for your special moments.
+              </p>
+
+              <div className="space-y-6">
+                <div className="flex items-center gap-4">
+                  <div className="w-16 h-16 bg-accent/10 flex items-center justify-center">
+                    <Users size={28} className="text-accent" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-foreground">Flexible Capacity</p>
+                    <p className="text-sm text-muted-foreground">Accommodates 50 to 300+ guests</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-4">
+                  <div className="w-16 h-16 bg-accent/10 flex items-center justify-center">
+                    <PartyPopper size={28} className="text-accent" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-foreground">All-Inclusive Support</p>
+                    <p className="text-sm text-muted-foreground">Setup, coordination, and hospitality</p>
+                  </div>
+                </div>
               </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input
-                  type="text"
-                  placeholder="Event Type"
-                  className="px-4 py-3 bg-background border border-border rounded focus:outline-none focus:ring-2 focus:ring-accent"
-                />
-                <input
-                  type="text"
-                  placeholder="Expected Guest Count"
-                  className="px-4 py-3 bg-background border border-border rounded focus:outline-none focus:ring-2 focus:ring-accent"
-                />
-              </div>
-
-              <textarea
-                placeholder="Tell us about your event..."
-                rows={4}
-                className="w-full px-4 py-3 bg-background border border-border rounded focus:outline-none focus:ring-2 focus:ring-accent"
-              />
-
-              <button className="w-full px-6 py-3 bg-accent text-white rounded font-semibold hover:bg-accent/90 transition-colors">
-                Request Event Proposal
-              </button>
-            </form>
+            </div>
           </div>
+        </div>
+      </section>
+
+      {/* Services */}
+      <section className="py-20 md:py-32">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <p className="text-sm uppercase tracking-[0.2em] text-accent font-medium mb-4">
+                What We Provide
+              </p>
+              <h2 className="font-serif text-3xl md:text-4xl font-semibold text-foreground mb-6">
+                Event Services
+              </h2>
+              <p className="text-lg text-muted-foreground mb-8">
+                We handle the logistics so you can focus on celebrating. 
+                Our team ensures everything runs smoothly from start to finish.
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {services.map((service, i) => (
+                  <div key={i} className="flex items-center gap-3">
+                    <div className="w-5 h-5 flex items-center justify-center bg-accent/10 rounded-full">
+                      <Check size={12} className="text-accent" />
+                    </div>
+                    <span className="text-foreground text-sm">{service}</span>
+                  </div>
+                ))}
+              </div>
+
+              <Link
+                href="/contact"
+                className="group inline-flex items-center gap-2 mt-8 text-accent font-medium hover:text-accent/80 transition-colors"
+              >
+                Inquire About Events
+                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              <div className="aspect-[3/4] overflow-hidden">
+                <img
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/feb260be-7904-458c-b702-9a7310432af1-4Hg5C0qpEr9322Y1ld0COCjzKz7ypw.jpeg"
+                  alt="Event setup"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="aspect-[3/4] overflow-hidden mt-8">
+                <img
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/49b24c1f-45a5-4f67-ad0b-b32f29010d4e-XtvsrsP3BXE7C2S87571SvO3CcpNeZ.jpeg"
+                  alt="Celebration space"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Inquiry Form */}
+      <section className="py-20 md:py-32 bg-card">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <p className="text-sm uppercase tracking-[0.2em] text-accent font-medium mb-4">
+              Get Started
+            </p>
+            <h2 className="font-serif text-3xl md:text-4xl font-semibold text-foreground mb-4">
+              Plan Your Event
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              Tell us about your event and we&apos;ll get back to you with options.
+            </p>
+          </div>
+
+          <form className="space-y-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-foreground">Full Name</label>
+                <input
+                  type="text"
+                  placeholder="Your name"
+                  className="w-full px-4 py-3 bg-background border border-border rounded-sm focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-colors"
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-foreground">Phone Number</label>
+                <input
+                  type="tel"
+                  placeholder="Your phone"
+                  className="w-full px-4 py-3 bg-background border border-border rounded-sm focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-colors"
+                />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-foreground">Event Type</label>
+                <select className="w-full px-4 py-3 bg-background border border-border rounded-sm focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-colors">
+                  <option>Select event type</option>
+                  <option>Wedding</option>
+                  <option>Birthday Party</option>
+                  <option>Corporate Event</option>
+                  <option>Church Program</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-foreground">Expected Guests</label>
+                <input
+                  type="text"
+                  placeholder="Number of guests"
+                  className="w-full px-4 py-3 bg-background border border-border rounded-sm focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-colors"
+                />
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-foreground">Preferred Date</label>
+              <input
+                type="text"
+                placeholder="When are you planning your event?"
+                className="w-full px-4 py-3 bg-background border border-border rounded-sm focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-colors"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-foreground">Tell Us More</label>
+              <textarea
+                placeholder="Describe your event and any special requirements..."
+                rows={5}
+                className="w-full px-4 py-3 bg-background border border-border rounded-sm focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-colors resize-none"
+              />
+            </div>
+
+            <button 
+              type="submit"
+              className="w-full px-6 py-4 bg-accent text-accent-foreground rounded-sm font-medium hover:bg-accent/90 transition-colors tracking-wide"
+            >
+              Submit Inquiry
+            </button>
+          </form>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-16 md:py-24 bg-accent text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
-          <h2 className="font-serif text-3xl md:text-4xl font-bold">
+      <section className="py-20 md:py-32 bg-accent">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="font-serif text-3xl md:text-4xl font-semibold text-accent-foreground mb-6 text-balance">
             Ready to Host Your Event?
           </h2>
-          <p className="text-lg opacity-90">
-            Let our team create an unforgettable experience
+          <p className="text-lg text-accent-foreground/80 mb-10">
+            Contact us today to discuss your event and tour our garden spaces.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="px-8 py-3 bg-white text-accent rounded font-semibold hover:bg-background/90 transition-colors">
-              Contact Events Team
-            </button>
-            <button className="px-8 py-3 border-2 border-white text-white rounded font-semibold hover:bg-white hover:text-accent transition-colors">
-              View Event Spaces
-            </button>
+            <a
+              href="tel:0248919557"
+              className="inline-flex items-center justify-center px-8 py-4 bg-white text-accent rounded-sm text-sm font-medium hover:bg-white/90 transition-colors tracking-wide"
+            >
+              Call 0248 919 557
+            </a>
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center px-8 py-4 border border-white text-white rounded-sm text-sm font-medium hover:bg-white/10 transition-colors tracking-wide"
+            >
+              Send a Message
+            </Link>
           </div>
         </div>
       </section>

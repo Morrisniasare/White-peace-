@@ -12,18 +12,14 @@ export default function AmenityCard({
   description,
 }: AmenityCardProps) {
   return (
-    <div className="text-center space-y-3 p-6">
-      <div className="flex justify-center">
-        <div className="p-3 bg-secondary rounded-lg">
-          <Icon size={32} className="text-accent" />
+    <div className="group p-6 bg-card border border-border hover:border-accent/30 transition-all duration-300 hover:shadow-lg">
+      <div className="space-y-4">
+        <div className="w-12 h-12 flex items-center justify-center bg-accent/10 group-hover:bg-accent/20 transition-colors">
+          <Icon size={24} className="text-accent" />
         </div>
+        <h3 className="font-serif text-xl font-semibold text-foreground">{title}</h3>
+        <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
       </div>
-      <h3 className="font-serif text-lg font-semibold text-foreground">
-        {title}
-      </h3>
-      <p className="text-sm text-muted-foreground leading-relaxed">
-        {description}
-      </p>
     </div>
   )
 }
